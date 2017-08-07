@@ -1,0 +1,52 @@
+@import 'helpers';
+
+html, body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background: #FAFAFA;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+}
+
+* {
+	box-sizing: border-box;
+}
+
+#container {
+	width:100%;
+	display: grid;
+  grid-template-columns: 12;
+
+}
+
+#preact {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+#celljs {
+    grid-column-start: 4;
+    grid-column-end: 6;
+
+}
+
+#hyperapp {
+    grid-column-start: 7;
+    grid-column-end: 9;
+
+}
+
+#vue {
+    grid-column-start: 10;
+    grid-column-end: 12;
+}
+
+#app {
+	height: 100%;
+}

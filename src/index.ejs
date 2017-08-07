@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% for (var chunk in htmlWebpackPlugin.files.css) { %>
+        <link rel="preload" href="<%= htmlWebpackPlugin.files.css[chunk] %>" as="style">
+        <% } %>
+            <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+                <link rel="preload" href="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>" as="script">
+                <% } %>
+                    <meta charset="utf-8">
+                    <title>preact-boilerplate</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+                    <meta name="description" content="preact-boilerplate">
+                    <meta name="msapplication-TileColor" content="#673ab8">
+                    <meta name="msapplication-TileImage" content="./assets/icons/mstile-150x150.png">
+                    <meta name="apple-mobile-web-app-capable" content="yes">
+                    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+                    <meta name="apple-mobile-web-app-title" content="preact-boilerplate">
+                    <meta name="application-name" content="preact-boilerplate">
+                    <meta name="format-detection" content="telephone=no">
+                    <meta name="theme-color" content="#673ab8">
+                    <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
+                    <link rel="icon" type="image/png" href="/assets/icons/favicon-32x32.png" sizes="32x32">
+                    <link rel="icon" type="image/png" href="/assets/icons/favicon-16x16.png" sizes="16x16">
+                    <link rel="manifest" href="./manifest.json">
+                    <script src="https://www.celljs.org/cell.js"></script>
+                    <script src="https://unpkg.com/hyperapp"></script>
+                    <script src="https://unpkg.com/vue"></script>
+                    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+
+</head>
+
+<body>
+    <header style="background: green; color: white;font-family: fantasy;text-align: center;">
+        <h3 style="margin: 0; padding: 10px;">A sample project to learn preact, Cell.js, hyperapp, Vue.js, Redux, cycle.js</h3>
+    </header>
+    <div>
+        Few things to try for each libraries:
+        <ul>
+            <li>Render</li>
+            <li>Dom - Binding - Model</li>
+            <li>Event</li>
+        </ul>
+    </div>
+    <div id="container">
+        <div id="preact" title="Preact"></div>
+        <div id="celljs" title="Cell.js"></div>
+        <div id="hyperapp" title="hyperapp"></div>
+        <div id="vue" title="vue.js"></div>
+        <div id="cyclejs" title="cycle.js"></div>
+    </div>
+
+    <script>
+        function counter(state, action) {
+            if (state === undefined) {
+                return 0;
+            }
+
+            switch (action.type) {
+                case 'INCRESE':
+                    return state + 1;
+                case 'DECRESE':
+                    return state - 1;
+                case 'RESET':
+                    return 0;
+                default:
+                    return state;
+            }
+        }
+
+        var store = Redux.createStore(counter, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+        store.subscribe(_ => {
+            console.log("update cell");
+            document.getElementById("cell-counter").innerText = store.getState();
+        });
+
+    </script>
+
+    <footer>Based on a preact boilerplate.</footer>
+</body>
+
+</html>
